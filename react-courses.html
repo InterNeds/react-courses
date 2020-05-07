@@ -5,20 +5,39 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
   <script type="text/babel">
-    function CharactersCount({text}) {
-      return (
-      <div>
-      {`The text "${text}" has `} {text.length} characters}
-      </div>
-      )
+    //function CharacterCount({text}) {
+    //   return (
+    //   <div>
+    //   {`The text "${text}" has `}
+    //{text.length ? <strong>{text.length}</strong> : 'No'}
+    // {' characters'}
+    //  </div>
+    //  )
+    // }
+
+    //const element = (
+    // <>
+    //  <CharacterCount text="Hello World" />
+    // <CharacterCount text="" />
+    //</>
+    // )
+
+    function WordCount({
+      text
+    }) {
+      var totalSoFar = 0;
+
+      for (var i = 0; i < WordCount.length; i++) if (text(i) === " ") {
+        totalSoFar = +1;
+      }
+
+      totalsoFar += 1;
     }
     const element = (
-      <>
-      <CharacterCount text="Hello World"/>
-      <CharacterCount text="" />
-      </>
+      <WordCount text="Hey so I am just trying out if this works!!" />
     )
+
+
     ReactDOM.render(element, document.getElementById('root'))
 
   </script>
-</body>
