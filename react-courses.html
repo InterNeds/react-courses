@@ -22,22 +22,32 @@
     //</>
     // )
 
-    function WordCount({
-      text
-    }) {
-      var totalSoFar = 0;
+    function WordCount({ text }) {
+      render() ;{
+        var totalSoFar = 0;
 
-      for (var i = 0; i < WordCount.length; i++) if (text(i) === " ") {
-        totalSoFar = +1;
+        for (var i = 0; i < WordCount.length; i++) if (text(i) === " ") {
+          totalSoFar = +1;
+        }
+
+        totalsoFar += 1;
       }
-
-      totalsoFar += 1;
+      return (
+        <div>
+          {`The text "${text}" has `}
+          {{ totalSoFar }}
+          {'words'}
+        </div>
+      )
     }
     const element = (
-      <WordCount text="Hey so I am just trying out if this works!!" />
+      <>
+        <WordCount text="Hey so I am just trying out if this works out" />
+      </>
     )
 
 
     ReactDOM.render(element, document.getElementById('root'))
 
   </script>
+</body>
