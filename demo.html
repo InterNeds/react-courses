@@ -9,14 +9,22 @@
   const state ={eventCount: 0, username: ''}
 
   function App() {
+      function handleClick(){
+          setState({eventCount: state.eventCount + 1})
+      }
+
+      function handleChange(event){
+          console.log(event)
+     setState({username: event.target.value})
+      }
       return (
           <div>
           <p>There have been {state.eventCount} events. </p>
           <p>
-          <button onClick ={() => setState({eventCount: state.eventCount + 1})} >Click me!</button> 
+          <button onClick ={handleClick} >Click me!</button> 
+        </p>
           <p>You typed: {state.username} </p>
-          </p>
-          <input />
+          <input onChange={handleChange} />
           </div>
       )
   }
