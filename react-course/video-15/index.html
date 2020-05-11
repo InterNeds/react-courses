@@ -11,7 +11,7 @@
   
         React.useEffect(() => {
           window.localStorage.setItem('name', name)
-        }, [name])
+        }, [name])  // ¿why does he use [name] for?
   
         const handleChange = event => setName(event.target.value)
   
@@ -28,9 +28,11 @@
   
       function App() {
         const [count, setCount] = React.useState(0)
+        const [mult, setMult] = React.useState(1)
         return (
           <>
             <button onClick={() => setCount(c => c + 1)}>{count}</button>
+            <button onClick={() => setMult(i => i * 1.33)}>{mult}</button>
             <Greeting />
           </>
         )
