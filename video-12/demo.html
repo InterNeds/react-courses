@@ -5,29 +5,20 @@
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script type="text/babel">
      const rootElement = document.getElementById('root');
-  
-  const state ={eventCount: 0, username: ''}
-// probando
-  function App() {
-      return (
-          <div>
-          <p>There have been {state.eventCount} events. </p>
-          <p>
-          <button onClick ={() => setState({eventCount: state.eventCount + 1})} >Click me!</button> 
-          <p>You typed: {state.username} </p>
-          </p>
-          <input />
-          </div>
-      )
-  }
-  function setState(newState) {
-      Object.assign(state, newState)
-      renderApp()
-  }
+        function Greeting(){
+            const [name, setName] = React.useState('')
+            const handleChange = event => setName(event.target.value)
+            return(
+                <div>
+                <form>
+                <label htmlFor="name">Name: </label>
+                <input value="name" onChange={handleChange} />
+                </form>
+                {name ? <strong>Hello {name} </strong> : 'Please type your name'}
+                </div>
+            )
+        }
 
-  function renderApp() {
-       ReactDOM.render(<App />, rootElement)
-  }
-     renderApp()
+        ReactDOM.render(<Greeting /> , rootElement)
     </script>
   </body>
