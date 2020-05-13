@@ -11,7 +11,7 @@
   
         React.useEffect(() => {
           window.localStorage.setItem('name', name)
-        }, [name])  // ¿why does he use [name] for?
+        }, [name])  // ¿why does he use [name] for? when you change name it will call useEffect (listener function)
   
         const handleChange = event => setName(event.target.value)
   
