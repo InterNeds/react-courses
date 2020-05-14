@@ -39,59 +39,63 @@
             justify-content: center;
             align-items: center;
         }
-
     </style>
 
-<script type="text/babel">
-    function Tilt(props) {
+    <script type="text/babel">
+        function Tilt(props) {
 
-        console.log(props)
-        const { children } = props;
-        const tiltRef = React.useRef()
-        React.useEffect(() => {
-            const tiltNode = tiltRef.current
-            const vanillaTiltOptions = {
-                max: 25,
-                speed: 400,
-                glare: true,
-                'max-glare': 0.5,
-            }
-            VanillaTilt.init(tiltNode, vanillaTiltOptions)
-        })
+            console.log(props)
+            const { children } = props;
+            const tiltRef = React.useRef()
+            // Refs provide a way to acces DOM nodes created in the render method
+            // React useEffect is excecuted after the render is on the screen confirmed
+            React.useEffect(() => {
+                const tiltNode = tiltRef.current
+                // .current "the object will remain persistent during the complete life of the component"
+                const vanillaTiltOptions = {
+                    max: 25,
+                    speed: 400,
+                    glare: true,
+                    'max-glare': 0.5,
+                }
+                VanillaTilt.init(tiltNode, vanillaTiltOptions)
+                // ¿initial argument? Doubt
+            })
 
-        return (
-            <div ref={tiltRef} className="tilt-root">
-                <div className="tilt-child">{children} </div>
+            return (
+                <div ref={tiltRef} className="tilt-root">
+                    <div className="tilt-child">{children} </div>
+                </div>
+            )
+        }
+        //  Why does he use ref= ?
 
-            </div>
-        )
-    }
 
-    function App(props) {
-        console.log(props, "Hola");
-        const [showTilt, setShowTilt] = React.useState(true);
-        return (
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={showTilt}
-                        // show and hide Tilt using the useState Hook
-                        onChange={e => setShowTilt(e.target.checked)}
-                    />{' '}
+        function App(props) {
+            console.log(props, "Hola");
+            const [showTilt, setShowTilt] = React.useState(true);
+            return (
+                <div>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={showTilt}
+                            // show and hide Tilt using the useState Hook
+                            onChange={e => setShowTilt(e.target.checked)}
+                        />{' '}
         show tilt
       </label>
-                {showTilt ? (
-                    <Tilt>
-                        <div className="totally-centered">vanilla-tilt.js</div>
+                    {showTilt ? (
+                        <Tilt>
+                            <div className="totally-centered">vanilla-tilt.js</div>
 
-                    </Tilt>
-                ) : null}
-            </div>
-        );
-    }
+                        </Tilt>
+                    ) : null}
+                </div>
+            );
+        }
 
-    ReactDOM.render(<App color="red"><h1>Potato</h1></App>, document.getElementById('root'));
-</script>
+        ReactDOM.render(<App></App>, document.getElementById('root'));
+    </script>
 </body>
 </body>
