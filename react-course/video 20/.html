@@ -4,16 +4,25 @@
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script type="text/babel">
-        function UsernameForm() {
-            event.preventDefault()
-            console.dir(event.target)
+       function UsernameForm() {
             function handleSubmit(event) {
-
+                event.preventDefault()
+                console.dir(event.target)
             }
+            return (
+                <form>
+                    <div>
+                        <label>Username:</label>
+                        <input type="text" />
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            )
         }
 
 
 
         ReactDOM.render(<App />, document.getElementById('root'));
+        ReactDOM.render(element, document.getElementById('root'));
     </script>
 </body>
