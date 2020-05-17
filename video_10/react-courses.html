@@ -1,0 +1,24 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+ <script  type="text/babel">
+ const rootElement = document.getElementById('root')
+//converts a date to a string, returning the "date" portion using the current locale's conventions.
+
+function tick() {
+  const time = new Date().toLocaleTimeString()
+ const element = <div>
+  <input  value={time}/>
+  <input  value={time}/>
+  </div>
+ 
+ ReactDOM.render(element, rootElement)
+}
+
+tick()
+//Runs a function or a code snippet repetitively every time the specified period of time ends
+setInterval(tick, 1000)
+</script>
+</body>
