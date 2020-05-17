@@ -8,8 +8,9 @@
             // the function handleSubmit will accept an evet as an argument
             function handleSubmit(event) {
                 event.preventDefault() //we will not longer get a full refresh page with event.preventDefault
+                console.dir(event.target) // will console the properties of the form
                 const username = document.querySelector('input').value
-                alert(`You entered: ${username}`)
+                alert(`Your username is: ${username}`)
             }
             return (
                 <form onSubmit={handleSubmit}>
