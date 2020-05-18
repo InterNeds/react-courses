@@ -17,7 +17,7 @@
           React.useEffect(() => {
             const interval = setInterval(() => {
               setItems(shuffle(items))
-            }, 1000) // every 10000 seconds the const interval is going to shuffle the items
+            }, 1000) // every 10000 miliseconds the const interval is going to shuffle="barajar" the items and triggers a re-render with that shuffled version of the items
             return () => clearInterval(interval)
           }, [])
     
@@ -63,6 +63,7 @@
           return array
         }
         ReactDOM.render(<FocusDemo/>, document.getElementById('root'))
+        // React is able to determine where to move the focus as your component updates with a KEY
     </script>
       
 </body>
