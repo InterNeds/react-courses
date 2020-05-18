@@ -5,13 +5,28 @@
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script type="text/babel">
         function PokemonInfo({ pokemonName }) {
+            const [pokemon, setPokemon] = React.useState(null)
             React.useEffect(() => {
                 if (!pokemonName) {
                     return
                 }
+                fetchPokemon(pokemonName).then(
+                    pokemonData => {
+                        setPokemon(pokemonData)
+                    }
+                )
 
-            })
-            return <div>Need to request info for: {pokemonName}</div>
+            }, [pokemonName])
+            if (!pokemonName) {
+                return 'Submit a pokemon'
+            }
+            // ! = no condition
+            if (!pokemon) {
+                return '...'
+            }
+
+
+            return <pre>{JSON.stringify(pokemon, null, 2)}</pre>
         }
         function App() {
             const [pokemonName, setPokemonName] = React.useState('')
@@ -37,36 +52,39 @@
         }
         function fetchPokemon(name) {
             const pokemonQuery = `
-            query ($name: String){
-                pokemon(name: $name) ´
-                id
-                number
+        query ($name: String) {
+          pokemon(name: $name) {
+            id
+            number
+            name
+            attacks {
+              special {
                 name
-                attacks{
-                    special {
-                    name
-                    type
-                    damage
-                }
-                }
-                }
+                type
+                damage
+              }
             }
-            `
-            return window
-            fetch('https://graphql-pokemon.now.sh', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json;charset=UTF-8',
-                },
-                body: JSON.stringify({
-                    query: pokemonQuery,
-                    variables: { name },
-                })
-            })
-                .then(r => r.json()) // take the response and parcing it as a JSON
-                .then(response => response.data.pokemon) // when that's done we get the response and pack the pokemon in the data of pokemon
+          }
         }
-
+      ` 
+      return window
+        .fetch('https://graphql-pokemon.now.sh', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json;charset=UTF-8',
+          },
+          body: JSON.stringify({
+            query: pokemonQuery,
+            variables: {name},
+          }),
+        })
+        .then(r => r.json()) // take the response and parcing it as a JSON
+        .then(response => response.data.pokemon) // when that's done we get the response and pack the pokemon in the data of pokemon
+    }
+               
+               
+               
+       
 
 
         ReactDOM.render(<App />, document.getElementById('root'))
