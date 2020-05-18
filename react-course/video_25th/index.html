@@ -13,30 +13,32 @@
             </div>
         )
     }
-    function FavoriteAnimal() {
-        const [animal, setAnimal] = React.useState('')
+    function FavoriteAnimal({animal, onAnimalChange}) { // is rendering his own state
         return (
             <div>
             <label>Favourite Animal: </label>
             <input 
             value={animal}
-            onChange={event => setAnimal(event.target.value)}
+            onChange={onAnimalChange}
             />
             </div>
         )
     }
-    function Display({name}){
-        return <div>{`Hey ${name}, you are great!`} </div>
+    function Display({name, animal}){
+       // return <div>{`Hey ${name}, you are great!`} </div>
+       return <div>{`Hey ${name}, your favourite animal is ${animal}!`} </div>
     }
     function App() {
         const [name,setName] = React.useState('')
+        const [animal, setAnimal] = React.useState('')
         return(
             <form>
             <Name 
-            name={name}
+            name={name} // name is a state I pass to the Name component and the Display component
             onNameChange= {event => setName(event.target.value)}/>
-            <FavoriteAnimal />
-            <Display name={name} />
+            <FavoriteAnimal animal={animal} onAnimalChange={event => setAnimal(event.target.value)} />
+            <Display name={name} animal={animal} />  
+            {/* Name , FavouriteAnimal and Display are siblings; name={animal} means that the name is coming from name */}
             </form>
         )
     }
