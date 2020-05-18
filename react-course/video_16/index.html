@@ -5,6 +5,12 @@
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
     <script type="text/babel">
         function PokemonInfo({ pokemonName }) {
+            React.useEffect(() => {
+                if (!pokemonName) {
+                    return
+                }
+
+            })
             return <div>Need to request info for: {pokemonName}</div>
         }
         function App() {
@@ -57,8 +63,8 @@
                     variables: { name },
                 })
             })
-                .then(r => r.json())
-                .then(response => response.data.pokemon)
+                .then(r => r.json()) // take the response and parcing it as a JSON
+                .then(response => response.data.pokemon) // when that's done we get the response and pack the pokemon in the data of pokemon
         }
 
 
