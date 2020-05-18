@@ -6,13 +6,16 @@
     <script type="text/babel">
         function PokemonInfo({ pokemonName }) {
             const [pokemon, setPokemon] = React.useState(null)
-            React.useEffect(() => {
+            const [error, setError] = React.useState(null)
+                React.useEffect(() => {
                 if (!pokemonName) {
                     return
                 }
                 fetchPokemon(pokemonName).then(
                     pokemonData => {
                         setPokemon(pokemonData)
+                    }, errorData => {
+                        setError(errorData)
                     }
                 )
 
@@ -23,6 +26,9 @@
             // ! = no condition
             if (!pokemon) {
                 return '...'
+            }
+            if (error) {
+                return 'Oh no!There is an error...'
             }
 
 
