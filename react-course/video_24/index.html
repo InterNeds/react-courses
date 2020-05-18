@@ -22,23 +22,23 @@
             }
             return (
                 <div>
-                    <button disabled={items.lenght >= allItems.length} onClick={addItem} >
-                        add item
-            </button>
-                    <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+                    <button disabled={items.length >= allItems.length} onClick={addItem}>add item</button>
+                    <ul style={{ listStyle: 'none', paddingLeft: 0 }} >
                         {items.map(item => (
-                            <li>
-                                <button onClick={() => removeItems(item)}>remove</button>{'apple'}
-                                <label htmlFor={`${item.value}-input`}>{item.value}</label>
-                                <input id={`${item.value}-input`} defaultValue={item.value}></input>
+                            //taking arrays and mapping them
+                            //the key update the DOM and they are uniques
+                            <li key={item.id}> 
+                            {/*turning arrays into htmls elements*/}
+                                <button onClick={() => removeItems(item)}>remove</button>{' '}
+                                <label htmlFor={`${item.value}-input`}>{item.value} </label>{' '}
+                                <input id={`${item.value}-input`} defaultValue={item.value} ></input>
                             </li>
-
                         ))}
-
                     </ul>
                 </div>
             )
         }
         ReactDOM.render(<App />, document.getElementById('root'))
     </script>
+      
 </body>
