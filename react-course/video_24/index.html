@@ -26,10 +26,10 @@
                     <ul style={{ listStyle: 'none', paddingLeft: 0 }} >
                         {items.map(item => (
                             //taking arrays and mapping them
-                            //the key update the DOM
-                            <li key={item.id}> {/*turning arrays into htmls elements*/}
-
-                                <button onClick={() => removeItem(item)}>remove</button>{' '}
+                            //the key update the DOM and they are uniques
+                            <li key={item.id}> 
+                            {/*turning arrays into htmls elements*/}
+                                <button onClick={() => removeItems(item)}>remove</button>{' '}
                                 <label htmlFor={`${item.value}-input`}>{item.value} </label>{' '}
                                 <input id={`${item.value}-input`} defaultValue={item.value} ></input>
                             </li>
